@@ -16,7 +16,7 @@ namespace Reddit.Controllers
     [ApiController]
     public class SubredditController : ControllerBase
     {
-        [HttpGet("data")]
+        [HttpGet("data/{subreddit}")]
         public async Task<IActionResult> GetData(string subreddit)
         {
             using (var client = new HttpClient())
@@ -25,7 +25,7 @@ namespace Reddit.Controllers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync($"/r/itookapicture/.json?raw_json=1&limit=100");
+                HttpResponseMessage response = await client.GetAsync($"/r/{subreddit}/.json?raw_json=1&limit=100");
 
                 if (response.IsSuccessStatusCode)
                 {
