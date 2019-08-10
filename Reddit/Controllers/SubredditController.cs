@@ -25,7 +25,7 @@ namespace Reddit.Controllers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync($"/r/{subreddit}/.json?raw_json=1&limit=100");
+                HttpResponseMessage response = await client.GetAsync($"/r/itookapicture/.json?raw_json=1&limit=100");
 
                 if (response.IsSuccessStatusCode)
                 {

@@ -33,13 +33,18 @@ export class SearchBar extends Component {
             marginBottom: '10px'
         }
 
+        const inputBarStyle = {
+            width: '30%',
+            textAlign: 'center'
+        }
+
         return (
             <div>
                 <div class="input-group flex-nowrap">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="addon-wrapping">Subreddit :</span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Subreddit" aria-describedby="subreddit name" onChange={this.handleChange}/>
+                    <input type="text" class="form-control" aria-label="Subreddit" aria-describedby="subreddit name" onChange={this.handleChange} style={inputBarStyle}/>
                 </div>
                 <button className="btn btn-outline-primary" style={buttonStyle} onClick={this.fetchData}>Search</button>
             </div>
