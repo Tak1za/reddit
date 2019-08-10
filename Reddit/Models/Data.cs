@@ -18,6 +18,12 @@ namespace Reddit.Models
         public Preview Preview { get; set; }
 
         [DataMember(Name = "secure_media_embed")]
-        public SecureMedia SecureMedia {get; set;}
-        }
+        public SecureMedia SecureMedia { get; set; }
+
+        [DataMember(Name = "author")]
+        public string Author { get; set; }
+
+        [DataMember(Name = "subreddit_name_prefixed")]
+        public string SubredditName { get; set; }
+    }
 }
