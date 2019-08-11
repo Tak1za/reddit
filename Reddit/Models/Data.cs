@@ -25,5 +25,11 @@ namespace Reddit.Models
 
         [DataMember(Name = "subreddit_name_prefixed")]
         public string SubredditName { get; set; }
+
+        [DataMember(Name = "ups")]
+        public int Ups { get; set; }
+
+        [DataMember(Name = "downs")]
+        public int Downs { get; set; }
     }
 }

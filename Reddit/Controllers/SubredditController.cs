@@ -25,7 +25,7 @@ namespace Reddit.Controllers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync($"/r/itookapicture/.json?raw_json=1&limit=100");
+                HttpResponseMessage response = await client.GetAsync($"/r/{subreddit}/.json?raw_json=1&limit=100");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -44,6 +44,8 @@ namespace Reddit.Controllers
                                 resGroup.Url = x.Data.SecureMedia.Url;
                                 resGroup.Author = x.Data.Author;
                                 resGroup.SubredditName = x.Data.SubredditName;
+                                resGroup.Ups = x.Data.Ups;
+                                resGroup.Downs = x.Data.Downs;
                                 testList.Add(resGroup);
                             }
                         }
@@ -56,6 +58,8 @@ namespace Reddit.Controllers
                                 resGroup.Url = y.Source.Url;
                                 resGroup.Author = x.Data.Author;
                                 resGroup.SubredditName = x.Data.SubredditName;
+                                resGroup.Ups = x.Data.Ups;
+                                resGroup.Downs = x.Data.Downs;
                                 testList.Add(resGroup);
                             }
                         }

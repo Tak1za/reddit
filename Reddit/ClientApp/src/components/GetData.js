@@ -6,7 +6,7 @@ export class GetData extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { result: [], loading: true };
+        this.state = { result: [], loading: true};
     }
 
     fetchedData = (data) => {
@@ -41,6 +41,12 @@ export class GetData extends Component {
                                 <h6 className="card-text">Posted By: {res.author}</h6>
                                 <a href={res.url} target="_blank" class="btn btn-primary">Get Image</a>
                             </div>
+                            <div class="card-footer text-muted">
+                                Upvotes: {res.ups}
+                            </div>
+                            <div class="card-footer text-muted">
+                                Downvotes: {res.downs}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -49,13 +55,21 @@ export class GetData extends Component {
     }
 
     render() {
-        let contents = this.state.loading
-            ? <p><em>Loading...</em></p>
-            : GetData.renderData(this.state.result);
+        let dataAppearsHere = <p style={{ marginTop: '10px' }}><em>Data will appear here...</em></p>;
+        let contents;
+
+        if (this.state.loading) {
+            contents = dataAppearsHere;
+        }
+        else if (this.state.result.length > 0) {
+            contents = GetData.renderData(this.state.result);
+        } else {
+            contents = dataAppearsHere;
+        }
 
         return (
             <div>
-                <SearchBar fetchedData={this.fetchedData} loadingData={this.loadingData}/>
+                <SearchBar fetchedData={this.fetchedData} loadingData={this.loadingData} />
                 {contents}
             </div>
         );
