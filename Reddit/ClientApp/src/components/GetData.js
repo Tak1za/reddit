@@ -1,12 +1,14 @@
 ﻿import React, { Component } from 'react';
 import { SearchBar } from './SearchBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenFancy, faThumbsUp, faThumbsDown, faPhotoVideo } from '@fortawesome/free-solid-svg-icons'
 
 export class GetData extends Component {
     static displayName = GetData.name;
 
     constructor(props) {
         super(props);
-        this.state = { result: [], loading: true};
+        this.state = { result: [], loading: true };
     }
 
     fetchedData = (data) => {
@@ -30,26 +32,47 @@ export class GetData extends Component {
             textAlign: 'center'
         }
 
+        const accordionStyle = {
+            textAlign: 'center'
+        }
+
         return (
             <div>
                 <h3 style={headingStyle}>{result[0].subredditName}</h3>
-                <div className="row">
-                    {result.map(res =>
-                        <div className="card text-center container col-12 col-sm-12 col-md-5 col-lg-5 shadow p-3 mb-5 bg-white rounded" style={cardStyle}>
-                            <div className="card-body">
-                                <p className="card-text">{res.tag}</p>
-                                <h6 className="card-text">Posted By: {res.author}</h6>
-                                <a href={res.url} target="_blank" class="btn btn-primary">Get Image</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                Upvotes: {res.ups}
-                            </div>
-                            <div class="card-footer text-muted">
-                                Downvotes: {res.downs}
-                            </div>
+                <table align="center">
+                    <td>
+                        <div id="accordion" style={accordionStyle}>
+                            {result.map(res =>
+                                <div className="card">
+                                    <div class="card-header" id={"heading_" + res.id}>
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target={"#" + res.id} aria-expanded="true" aria-controls={res.id}>
+                                                {res.tag} - {res.author}
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id={res.id} class="collapse" aria-labelledby={"heading_" + res.id} data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p className="card-text">
+                                                <FontAwesomeIcon icon={faPenFancy} />  Author: {res.author}
+                                            </p>
+                                            <p className="card-text">
+                                                <FontAwesomeIcon icon={faThumbsUp} />  Upvotes: {res.ups}
+                                            </p>
+                                            <p className="card-text">
+                                                <FontAwesomeIcon icon={faThumbsDown} />  Downvotes: {res.downs}
+                                            </p>
+                                            <a href={res.url} className="btn btn-primary" role="button" target="_blank">
+                                                Get Image  <FontAwesomeIcon icon={faPhotoVideo} />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
+                    </td>
+                </table>
             </div>
         );
     }
@@ -70,7 +93,9 @@ export class GetData extends Component {
         return (
             <div>
                 <SearchBar fetchedData={this.fetchedData} loadingData={this.loadingData} />
-                {contents}
+                <div className="container">
+                    {contents}
+                </div>
             </div>
         );
     }

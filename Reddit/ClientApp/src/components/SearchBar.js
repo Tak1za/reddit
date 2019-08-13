@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faCut } from '@fortawesome/free-solid-svg-icons'
 
 export class SearchBar extends Component {
     constructor(props) {
@@ -37,11 +39,15 @@ export class SearchBar extends Component {
     }
 
     render() {
-        const buttonStyle = {
+        const buttonStyleSearch = {
+            marginTop: '10px',
+            marginBottom: '10px'
+        }
+
+        const buttonStyleClear = {
             marginTop: '10px',
             marginBottom: '10px',
-            marginLeft: '5px',
-            marginRight: '5px'
+            marginLeft: '5px'
         }
 
         return (
@@ -50,12 +56,12 @@ export class SearchBar extends Component {
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="addon-wrapping">Subreddit :</span>
                     </div>
-                    <div className="col-10 col-sm-10 col-md-10 col-lg-12">
+                    <div className="col-10 col-sm-10 col-md-10 col-lg-11">
                         <input type="text" class="form-control" aria-label="Subreddit" aria-describedby="subreddit name" onChange={this.handleChange} value={this.state.subreddit}/>
                     </div>
                 </div>
-                <button className="btn btn-outline-primary" style={buttonStyle} onClick={this.fetchData}>Search</button>
-                <button className="btn btn-outline-warning" style={buttonStyle} onClick={this.resetData}>Clear</button>
+                <button className="btn btn-outline-primary" style={buttonStyleSearch} onClick={this.fetchData}><FontAwesomeIcon icon={faSearch} /> Search </button>
+                <button className="btn btn-outline-warning" style={buttonStyleClear} onClick={this.resetData}><FontAwesomeIcon icon={faCut} /> Clear </button>
             </div>
         )
     }

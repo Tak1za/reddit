@@ -5,6 +5,9 @@ namespace Reddit.Models
     [DataContract]
     public class Data
     {
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
+
         [DataMember(Name = "subreddit")]
         public string Subreddit { get; set; }
 

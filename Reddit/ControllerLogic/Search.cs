@@ -35,6 +35,7 @@ namespace Reddit.ControllerLogic
                             foreach (Images y in x.Data.Preview.Images)
                             {
                                 var resGroup = new Result();
+                                resGroup.Id = x.Data.Id;
                                 resGroup.Tag = x.Data.Title;
                                 resGroup.Url = x.Data.SecureMedia.Url;
                                 resGroup.Author = x.Data.Author;
@@ -49,6 +50,7 @@ namespace Reddit.ControllerLogic
                             foreach (Images y in x.Data.Preview.Images)
                             {
                                 var resGroup = new Result();
+                                resGroup.Id = x.Data.Id;
                                 resGroup.Tag = x.Data.Title;
                                 resGroup.Url = y.Source.Url;
                                 resGroup.Author = x.Data.Author;
