@@ -34,7 +34,7 @@ export class GetData extends Component {
 
                 <ul className="list-group list-group-flush">
                     {result.map(res =>
-                        <li class="list-group-item" key={res.id}>
+                        <li className="list-group-item" key={res.id}>
                             <div style={groupStyle}>
                                 <p>
                                     <FontAwesomeIcon icon={faPenFancy} /> - {res.tag}

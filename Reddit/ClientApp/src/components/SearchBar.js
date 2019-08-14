@@ -57,12 +57,12 @@ export class SearchBar extends Component {
 
         return (
             <div>
-                <div class="input-group flex-nowrap">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="addon-wrapping">Subreddit :</span>
+                <div className="input-group flex-nowrap">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text" id="addon-wrapping">Subreddit :</span>
                     </div>
                     <div className="col-10 col-sm-10 col-md-10 col-lg-11">
-                        <input type="text" class="form-control" aria-label="Subreddit" aria-describedby="subreddit name" onChange={this.handleChange} value={this.state.subreddit}/>
+                        <input type="text" className="form-control" aria-label="Subreddit" aria-describedby="subreddit name" onChange={this.handleChange} value={this.state.subreddit}/>
                     </div>
                 </div>
                 <button className="btn btn-outline-primary" style={buttonStyleSearch} onClick={this.fetchData}><FontAwesomeIcon icon={faSearch} /> Search </button>
