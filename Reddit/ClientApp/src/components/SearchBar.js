@@ -7,7 +7,7 @@ export class SearchBar extends Component {
         super(props);
 
         this.state = {
-            subreddit: ""
+            subreddit: "", boilerText: "Data will appear here"
         }
     }
 
@@ -21,21 +21,26 @@ export class SearchBar extends Component {
     }
 
     fetchData = () => {
+        this.setState({
+            boilerText: "Loading..."
+        })
         fetch('api/r/data/' + this.state.subreddit)
             .then(response => response.json())
             .then(data => {
                 this.props.fetchedData(data);
-                this.props.loadingData(false);
+                this.setState({
+                    boilerText: ""
+                })
             });
     }
 
     resetData = () => {
         var emptyData = []
         this.setState({
-            subreddit: ""
+            subreddit: "",
+            boilerText: "Data will appear here"
         })
         this.props.fetchedData(emptyData);
-        this.props.loadingData(false);
     }
 
     render() {
@@ -62,6 +67,7 @@ export class SearchBar extends Component {
                 </div>
                 <button className="btn btn-outline-primary" style={buttonStyleSearch} onClick={this.fetchData}><FontAwesomeIcon icon={faSearch} /> Search </button>
                 <button className="btn btn-outline-warning" style={buttonStyleClear} onClick={this.resetData}><FontAwesomeIcon icon={faCut} /> Clear </button>
+                <p><em>{this.state.boilerText}</em></p>
             </div>
         )
     }
